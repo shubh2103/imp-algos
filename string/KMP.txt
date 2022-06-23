@@ -1,0 +1,65 @@
+*** Knuth-Morris-Pratt Algorithm***
+// characters of the string is compared repeatedly in the basic naive algo
+
+   Longest prefix suffix 
+
+string longestPrefix(string s) {
+    int n = s.size();
+    vector<int> pi(n,0);
+    for(int i = 1;i<n;i++)
+    {
+        int j = pi[i-1];
+        while(j>0 and s[i]!=s[j]) j = pi[j-1];
+        if(s[i]==s[j]) j++;
+        pi[i] = j;
+    }
+    return s.substr(0,pi[n-1]);    
+}
+// pi[i] contains the length of longest prefix suffix of string up to ith index:::::
+
+vector<int> prefix_function(string s)
+{
+    int n = s.size();
+    vector<int> pi(n, 0);
+    for (int i = 1; i < n; i++)
+    {
+        int j = pi[i - 1];
+        while (j > 0 and s[i] != s[j]) j = pi[j - 1];
+        if (s[i] == s[j]) j++;
+        pi[i] = j;
+    }
+    return pi;
+}
+bool is_present(string str, string pattern)
+{
+    vector<int> prefix = prefix_function(pattern);
+    int n = str.size();
+    int pos = -1;
+    int i(0), j(0);
+    while (i < n)
+    {
+        if (str[i] == pattern[j])
+        {
+            j++;
+            i++;
+        }
+        else {
+            if (j != 0) j = prefix[j - 1];
+            else i++;
+        }
+        if (j == pattern.size())
+        {
+            pos = i - pattern.size();
+        }
+    }
+    if (pos != -1) return true;
+    return false;
+
+}
+void best()
+{
+    string str;
+    string pattern;
+    cin >> str >> pattern;
+    cout << is_present(str, pattern);
+}

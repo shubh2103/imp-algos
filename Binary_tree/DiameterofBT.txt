@@ -1,0 +1,27 @@
+
+// main logic is to consider 2 cases 
+1. if diameter passes through root then c1 = hl + hr + 1;
+2. if don't pass c2 = max(rd,ld);
+ return max of both c1 & c2
+
+
+ // optimised way in O(n):
+ // in this the height is calculated within the function not extra function is required:
+int diameter(TreeNode* root, int* height){
+    if(root==NULL)
+    {
+        *height = 0;
+        return 0;
+    }
+    int lh =0,rh=0;
+    int ld = diameter(root->left,&lh);
+    int rd = diameter(root->right,&rh);
+    int d = lh + rh + 1;
+    *height = max(lh,rh)+1;
+    return max(d,max(ld,rd));
+
+}   
+int diameterOfBinaryTree(TreeNode* root) {
+    int height = 0;
+    return diameter(root,&height)-1;
+}

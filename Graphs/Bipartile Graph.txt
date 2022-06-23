@@ -1,0 +1,40 @@
+
+                                    CHECKING OF BIPARTITE GRAPH USING BFS ..........
+
+bool check(int src,vector<int>g[],vector<int>&color)
+    {
+        queue<int> q;
+	    q.push(src);
+	    color[src] = 1;
+        while(!q.empty())
+	    {
+	        int v = q.front();
+	        q.pop();
+	        for(int &child:g[v])
+	        {
+	            if(color[child]!=-1)
+	            {
+	                if(color[child]==color[v]) return false;
+	            }
+	            else
+	            {
+	                (color[v]==1)?color[child] = 0:color[child] = 1;
+	                q.push(child);
+	            }
+	        }
+	    }
+	    return true;
+    }
+	bool isBipartite(int V, vector<int>g[]){
+	    int n = V;
+	    vector<int>color(n,-1);
+	    bool ans = 1;
+	    for(int i = 0;i<n;i++)
+	    {
+	        if(color[i]==-1)
+	        {
+	            ans = (ans and check(i,g,color));
+	        }
+	    }
+	    return ans;
+	}

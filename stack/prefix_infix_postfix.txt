@@ -1,0 +1,27 @@
+---------------------------------------------------
+Infix
+      <operand> <operator> <operand>           *** useful for human notation as we know BODMAS***
+EX:      2        +          3
+
+-----------------------------------------------------
+Prefix - Expression (polish notaion)         *** useful for computer as he read from right to left and perform the required
+     <operator> <operand> <operand>              operations without considering any BODMAS
+
+Ex:  ((4*2 )+ 3) ==== ((*42)+3) ==== +*423
+     (5-(6/3))   ==== (5-(/63)) ==== -5/63
+    
+-----------------------------------------------------
+Postfix - Expression (revere polish notaion)
+          <operand> <operand> <operator>
+
+Ex:  ((4*2 )+ 3) ==== ((42*)+3) ====  42*3+
+     (5-(6/3))   ==== (5-(/63)) ==== 563/-
+
+
+YOU Should also know the conversions among the three:/../assets/prefix_Infix_postfix/2022-05-19-16-00-15.png
+
+// above image is for infix to postfix****
+for infix to prefix apply same logic only
+* reverse the string
+* change opening to closing and vise versa
+* reverse the final string again to obtain the desired output 

@@ -1,0 +1,39 @@
+*****using floyd's algorithm****
+
+---------------------------------------------------------------------------------------------------------
+bool detect_cycle(node* &head)
+{
+    node* Slow = head;
+    node* Fast = head;
+    while (Fast != NULL and Fast->next != NULL)
+    {
+        Fast = Fast->next->next;
+        Slow = Slow->next;
+        if (Fast == Slow) return true;
+    }
+    return false;
+}
+
+--------------------------------------------------------------------------------------------------------------
+// first we find the position where fast and slow are equal then we 
+void removecycle(node* &head)
+{
+    node* Slow = head;
+    node* Fast = head;
+    while (Fast != NULL and Fast->next != NULL)
+    {
+        Fast = Fast->next->next;
+        Slow = Slow->next;
+        if (Fast == Slow) break;
+    }
+    Slow = head;
+    while (Slow->next != Fast->next)
+    {
+        Slow = Slow->next;
+        Fast = Fast->next;
+    }
+    Fast->next = NULL;
+}
+----------------------------------------------------------------------------------------------------------------
+concept of removing the cycle can be proved using distances ....covered by fast and slow 
+****distance of fast = 2* distance of slow****

@@ -1,0 +1,42 @@
+***Implementation of stack push,pop,top and empty functions of a stack using arr of fixed size****
+const int n = 100;
+class Stack {
+
+    int *arr;
+    int top;
+
+public: ***make sure to make it public so that it can be accesible beyond this class also:
+    Stack() {
+        arr = new int[n];
+        top = -1;
+    }
+    void push(int x) {            ***push function***
+        if (top == n - 1)
+        {
+            cout << "stack overflow" << endl;
+            return;
+        }
+        top++;
+        arr[top] = x;
+    }
+    void pop() {                      ***pop function***
+        if (top == -1)
+        {
+            cout << "Stack is empty" << endl;
+            return;
+        }
+        top--;
+    }
+    int Top() {                        ***Top function***
+        if (top == -1)
+        {
+            cout << "No element in stack" << endl;
+            return -1;
+        }
+        return arr[top];
+    }
+    bool empty()                    ***Empty function***
+    {
+        return top == -1;
+    }
+};

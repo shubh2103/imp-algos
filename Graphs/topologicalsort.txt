@@ -1,0 +1,33 @@
+ Topological sorting
+
+* only for Directed Acyclic GRAPH (DAG)
+* its a linear ordering such that for every edge u-->v, u comes before v in the ordering
+
+// it can be done using both DFS and BFS
+
+1. using DFS 
+
+void dfs(int vertex,vector<int>&ans,vector<bool>&visited,vector<int>g[]){
+    visited[vertex] = 1;
+    for(int &child:g[vertex]){
+        if(visited[child]) continue;
+        dfs(child,ans,visited,g);
+    }
+    ans.push_back(vertex);
+}
+vector<int> topoSort(int V, vector<int> g[]) 
+{
+    vector<bool> visited(V,0);
+    vector<int> ans;
+    for(int i = 0;i<V;i++)
+    {
+        if(visited[i]) continue;
+        dfs(i,ans,visited,g);
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+
+2. using BFS (kahn's Algorithm)
+
+indegree type solutin ::::::::

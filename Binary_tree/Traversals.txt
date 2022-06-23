@@ -1,0 +1,37 @@
+***PRE-ORDER TRAVERSAL*** : 
+ 1. ROOT
+ 2. LEFT SUBTREE
+ 3. RIGHT SUBTREE
+
+***IN-ORDER TRAVERSAL***:
+ 1. LEFT SUBTREE
+ 2. ROOT
+ 3. RIGHT SUBTREE
+
+***POST-ORDER TRAVERSAL***
+ 1. LEFT SUBTREE
+ 2. RIGHT SUBTREE
+ 3. ROOT 
+ ................................................................................................................
+void preorder(struct node* root)
+{
+    if (root == NULL) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void inorder(struct node* root)
+{
+    if (root == NULL) return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+void postorder(struct node* root)
+{
+    if (root == NULL) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+............................................................................................................................

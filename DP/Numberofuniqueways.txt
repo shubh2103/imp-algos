@@ -1,0 +1,21 @@
+class Solution {
+public:
+    
+    int dp[310][5010];
+    int func(int i,int amount,vector<int>&coins)
+    {
+        int cnt = 0;
+        if(amount==0) return 1;
+        if(i<0) return 0;
+        if(dp[i][amount]!=-1) return dp[i][amount];
+        for(int total=0;total<=amount;total+=coins[i])
+        {
+            cnt += func(i-1,amount-total,coins);
+        }
+        return dp[i][amount] = cnt;
+    }
+    int change(int amount, vector<int>& coins) {
+        memset(dp,-1,sizeof(dp));
+        return func(coins.size()-1,amount,coins);
+    }
+};

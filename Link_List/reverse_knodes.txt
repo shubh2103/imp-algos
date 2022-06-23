@@ -1,0 +1,31 @@
+we first reverse the first k nodes in simple iterative way using three pointers then we reverse the left nodes using recursion
+
+ ListNode* reverseKGroup(ListNode* head, int k) {
+        int cnt = 0;
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        ListNode* nxt;
+        ListNode* tmp = head;
+        int n = 0;
+        while(tmp!=NULL)
+        {
+            n++;
+            tmp = tmp->next;
+        } 
+        ***n is calculated as if there are 5 nodes and 3 are getting reversed then last 2 wouldn't get reversed as ***they are less than k.
+        while(curr!=NULL and cnt<k)
+        {
+            nxt = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nxt;
+            cnt++;
+        }
+        n -= k;
+        if(n>=k)
+        {
+            head->next = reverseKGroup(curr,k);
+        }
+        else head->next = curr;
+        return prev;
+}
